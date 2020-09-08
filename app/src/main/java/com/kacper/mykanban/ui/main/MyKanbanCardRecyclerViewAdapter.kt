@@ -1,21 +1,24 @@
 package com.kacper.mykanban.ui.main
 
-import androidx.recyclerview.widget.RecyclerView
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.kacper.mykanban.R
 import com.kacper.mykanban.data.KanbanCard
+import com.kacper.mykanban.utilities.CellClickListener
 
-import com.kacper.mykanban.ui.main.dummy.DummyContent.DummyItem
 
 /**
  * [RecyclerView.Adapter] that can display a [KanbanCard].
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 class MyKanbanCardRecyclerViewAdapter(
-    private val values: List<KanbanCard>
+    private val context: Context,
+    private val values: List<KanbanCard>,
+    private val cellClickListener: CellClickListener
 ) : RecyclerView.Adapter<MyKanbanCardRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,20 +27,25 @@ class MyKanbanCardRecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.uid.toString()
         holder.contentView.text = item.name
+        holder.itemView.setBackgroundColor(item.color)
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener()
+        }
+
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val contentView: TextView = view.findViewById(R.id.content)
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"
         }
     }
+
 }

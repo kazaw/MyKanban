@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.kacper.mykanban.R
 import com.kacper.mykanban.ui.main.dummy.DummyContent
+import com.kacper.mykanban.utilities.CellClickListener
 
 /**
  * A fragment representing a list of Items.
  */
-class KanbanCardFragment : Fragment() {
+class KanbanCardFragment : Fragment(), CellClickListener {
 
     private var columnCount = 1
 
@@ -33,13 +35,16 @@ class KanbanCardFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_kanbancard_list, container, false)
 
         // Set the adapter
+
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyKanbanCardRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = MyKanbanCardRecyclerViewAdapter(context, DummyContent.ITEMS, this@KanbanCardFragment)
+
+
             }
         }
         return view
@@ -59,4 +64,9 @@ class KanbanCardFragment : Fragment() {
                 }
             }
     }
+
+    override fun onCellClickListener() {
+        Toast.makeText(context,"Cell clicked", Toast.LENGTH_SHORT).show()
+    }
+
 }

@@ -38,7 +38,7 @@ object DummyContent {
     }
 
     private fun createDummyItem(position: Int): KanbanCard {
-        return KanbanCard("Dummy $position", TO_DO , "Description $position", Color.BLUE, Calendar.getInstance())
+        return KanbanCard("Dummy $position", TO_DO , "Description $position", Color.CYAN, Calendar.getInstance())
     }
 
 
