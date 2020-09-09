@@ -3,4 +3,15 @@
     <string name="tab_text_1">To Do</string>
     <string name="tab_text_2">In Progress</string>
     <string name="tab_text_3">Done</string>
+    <string name="EditText_name">Name</string>
+    <string name="EditText_description">Description</string>
+    <string name="radiobutton_todo">To Do</string>
+    <string name="radiobutton_inprogress">In Progress</string>
+    <string name="radiobutton_done">Done</string>
+    <string-array name="colors_array">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+    </string-array>
 </resources>
