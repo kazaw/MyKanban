@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/button_insert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/EditText_name"
-            android:hint="@string/EditText_name"/>
+            android:hint="@string/hint_name"
+            android:autofillHints="@string/hint_name"/>
 
         <EditText
             android:id="@+id/editText_description"
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/EditText_description"
-            android:hint="@string/EditText_description"/>
+            android:hint="@string/hint_description"
+            android:autofillHints="@string/hint_description"/>
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -47,24 +47,28 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/radiobutton_inprogress" />
+                android:text="@string/radiobutton_in_progress" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/radiobutton_done" />
+
+            <Spinner
+                android:id="@+id/spinner_colors"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:padding="8dp"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:visibility="visible" />
         </RadioGroup>
 
-        <Spinner
-            android:id="@+id/spinner_colors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_insert"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Insert/Edit"

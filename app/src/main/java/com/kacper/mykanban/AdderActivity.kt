@@ -1,18 +1,20 @@
 package com.kacper.mykanban
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R.attr.country
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+
 
 class AdderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adder)
-        val spinner: Spinner = findViewById(R.id.spinner_colors)//TODO: isn't working
+        val spinner: Spinner = findViewById(R.id.spinner_colors)
         ArrayAdapter.createFromResource(
             this,
-            R.array.colors_array,
+            R.array.array_colors,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
