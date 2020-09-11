@@ -8,10 +8,11 @@
     <string name="radiobutton_todo">To Do</string>
     <string name="radiobutton_in_progress">In Progress</string>
     <string name="radiobutton_done">Done</string>
+    <string name="text_insert">Insert</string>
     <string-array name="array_colors">
         <item>Red</item>
-        <item>Blue</item>
         <item>Green</item>
+        <item>Blue</item>
         <item>Yellow</item>
     </string-array>
 </resources>
