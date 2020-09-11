@@ -3,27 +3,28 @@ package com.kacper.mykanban.data
 import android.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.kacper.mykanban.utilities.DATABASE_TABLE_CARD
 
 @Dao
 interface KanbanCardDao {
-    @Query("SELECT * FROM kanbanCard")
+    @Query("SELECT * FROM $DATABASE_TABLE_CARD")
     fun getAll(): LiveData<List<KanbanCard>>
 
-    @Query("SELECT * FROM kanbanCard WHERE color = :kanbanColor")
+    @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE color = :kanbanColor")
     fun getAllByColor(kanbanColor: Color): LiveData<List<KanbanCard>>
 
-    @Query("SELECT * FROM kanbanCard WHERE type = :kanbanType")
+    @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE type = :kanbanType")
     fun getAllByType(kanbanType: String): LiveData<List<KanbanCard>>
 
-    @Query("SELECT * FROM kanbanCard WHERE uid = :kanbanUid")
+    @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE uid = :kanbanUid")
     fun getKanbanCard(kanbanUid: Int) : LiveData<KanbanCard>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg kanbanCard: KanbanCard)
+    fun insert(kanbanCard: KanbanCard)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(kanbanCards: List<KanbanCard>)
 
     @Delete
-    fun delete(kanbanCard: KanbanCard)
+    suspend fun delete(kanbanCard: KanbanCard){}
 }
