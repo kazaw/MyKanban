@@ -11,7 +11,7 @@ interface KanbanCardDao {
     fun getAll(): LiveData<List<KanbanCard>>
 
     @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE color = :kanbanColor")
-    fun getAllByColor(kanbanColor: Color): LiveData<List<KanbanCard>>
+    fun getAllByColor(kanbanColor: Int): LiveData<List<KanbanCard>>
 
     @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE type = :kanbanType")
     fun getAllByType(kanbanType: String): LiveData<List<KanbanCard>>
@@ -20,11 +20,14 @@ interface KanbanCardDao {
     fun getKanbanCard(kanbanUid: Int) : LiveData<KanbanCard>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(kanbanCard: KanbanCard)
+    suspend fun insert(kanbanCard: KanbanCard)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(kanbanCards: List<KanbanCard>)
+    suspend fun insertAll(kanbanCards: List<KanbanCard>)
+
+    @Update
+    suspend fun update(kanbanCard: KanbanCard)
 
     @Delete
-    suspend fun delete(kanbanCard: KanbanCard){}
+    suspend fun delete(kanbanCard: KanbanCard)
 }
