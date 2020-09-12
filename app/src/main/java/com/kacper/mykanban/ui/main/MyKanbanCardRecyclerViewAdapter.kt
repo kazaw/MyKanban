@@ -17,7 +17,7 @@ import com.kacper.mykanban.utilities.CellClickListener
  */
 class MyKanbanCardRecyclerViewAdapter(
     private val context: Context,
-    private val values: List<KanbanCard>,
+    private var values: List<KanbanCard>,
     private val cellClickListener: CellClickListener
 ) : RecyclerView.Adapter<MyKanbanCardRecyclerViewAdapter.ViewHolder>() {
 
@@ -35,9 +35,7 @@ class MyKanbanCardRecyclerViewAdapter(
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener()
         }
-
     }
-
     override fun getItemCount(): Int = values.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

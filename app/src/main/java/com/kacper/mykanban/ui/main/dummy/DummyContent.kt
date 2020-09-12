@@ -38,7 +38,8 @@ object DummyContent {
     }
 
     private fun createDummyItem(position: Int): KanbanCard {
-        return KanbanCard("Dummy $position", TO_DO , "Description $position", Color.CYAN, Calendar.getInstance())
+        return if (position%2 == 1) KanbanCard("Dummy $position", TO_DO , "Description $position", Color.CYAN, Calendar.getInstance())
+        else KanbanCard("Bobob $position", TO_DO , "Description $position", Color.GRAY, Calendar.getInstance())
     }
 
 

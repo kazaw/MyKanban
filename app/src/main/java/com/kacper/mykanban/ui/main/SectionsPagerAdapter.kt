@@ -20,7 +20,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return KanbanCardFragment()
+        return KanbanCardFragment() //TODO: Switch, return fragment with kanbanCard with suitable type
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

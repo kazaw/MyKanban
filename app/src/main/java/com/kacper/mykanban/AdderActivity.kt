@@ -62,7 +62,7 @@ class AdderActivity : AppCompatActivity() {
                     val name = editTextName.text.toString()
                     val description = editTextDescription.text.toString()
                     var kanbanCard = KanbanCard(name, returnType() , description, returnColor(), Calendar.getInstance()) //TODO: Check if calendar change
-                    returnIntent.putExtra("KanbanCard", kanbanCard)
+                    returnIntent.putExtra("KanbanCardExtra", kanbanCard)
                     setResult(Activity.RESULT_OK,returnIntent)
                     finish()
                 }
