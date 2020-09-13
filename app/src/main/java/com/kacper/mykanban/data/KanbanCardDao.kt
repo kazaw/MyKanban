@@ -19,10 +19,10 @@ interface KanbanCardDao {
     @Query("SELECT * FROM $DATABASE_TABLE_CARD WHERE uid = :kanbanUid")
     fun getKanbanCard(kanbanUid: Int) : LiveData<KanbanCard>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(kanbanCard: KanbanCard)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(kanbanCards: List<KanbanCard>)
 
     @Update
