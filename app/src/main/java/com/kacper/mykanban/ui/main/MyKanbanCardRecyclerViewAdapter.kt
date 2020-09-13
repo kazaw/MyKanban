@@ -17,16 +17,21 @@ import com.kacper.mykanban.utilities.CellClickListener
  */
 class MyKanbanCardRecyclerViewAdapter(
     private val context: Context,
-    private var values: List<KanbanCard>,
+    private var values: MutableList<KanbanCard>,
     private val cellClickListener: CellClickListener
 ) : RecyclerView.Adapter<MyKanbanCardRecyclerViewAdapter.ViewHolder>() {
+
+    fun swapData(values: List<KanbanCard>){
+        this.values.clear()
+        this.values.addAll(values)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_kanbancard, parent, false)
         return ViewHolder(view)
     }
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
