@@ -17,4 +17,9 @@ class KanbanCardRepository (private val kanbanCardDao: KanbanCardDao){
 
     suspend fun update(kanbanCard: KanbanCard) = kanbanCardDao.update(kanbanCard)
 
+    suspend fun delete(kanbanCard: KanbanCard) = kanbanCardDao.delete(kanbanCard)
+
+    suspend fun deleteAll() = kanbanCardDao.deleteAll()
+
+
 }

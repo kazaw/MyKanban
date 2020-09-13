@@ -30,4 +30,7 @@ interface KanbanCardDao {
 
     @Delete
     suspend fun delete(kanbanCard: KanbanCard)
+
+    @Query("DELETE FROM $DATABASE_TABLE_CARD")
+    suspend fun deleteAll()
 }
