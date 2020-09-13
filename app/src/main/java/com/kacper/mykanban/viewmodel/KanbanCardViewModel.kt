@@ -13,11 +13,13 @@ import kotlinx.coroutines.launch
 
 class KanbanCardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: KanbanCardRepository
-    val all: LiveData<List<KanbanCard>>
     init {
-        val kanbanCardDao = AppDatabase.getDatabase(application).kanbanCardDao()
+        val kanbanCardDao = AppDatabase.getDatabase(application, viewModelScope).kanbanCardDao()
         repository = KanbanCardRepository(kanbanCardDao)
-        all = repository.getAll()
+    }
+
+    fun getAll(): LiveData<List<KanbanCard>> {
+        return  repository.getAll()
     }
 
     fun insert(kanbanCard: KanbanCard) = viewModelScope.launch(Dispatchers.IO) {
