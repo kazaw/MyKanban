@@ -12,6 +12,8 @@
     <string name="text_date">Date</string>
     <string name="text_type">Type</string>
     <string name="text_details">Details</string>
+    <string name="text_delete">Delete</string>
+    <string name="text_edit">Edit</string>
     <string-array name="array_colors">
         <item>Red</item>
         <item>Green</item>
