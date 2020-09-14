@@ -82,8 +82,9 @@ class KanbanCardFragment : Fragment(), CellClickListener {
             }
     }
 
-    override fun onCellClickListener() {
-        Toast.makeText(context,"Cell clicked", Toast.LENGTH_SHORT).show()
+    override fun onCellClickListener(kanbanCard: KanbanCard) {
+        val fragment = KanbanCardDetailFragment.newInstance(kanbanCard)
+        fragmentManager?.let { fragment.show(it, "KanbanCardDetailFragment") }
     }
 
 }
