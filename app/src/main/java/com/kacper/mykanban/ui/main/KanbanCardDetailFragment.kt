@@ -64,13 +64,19 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
             displayDetails()
         })
     }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
     private fun displayDetails(){
-        val simpleDateFormat = SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a")
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
         textView_detail_name.text = kanbanCard.name
         textView_detail_type.text = kanbanCard.type
         textView_detail_date.text = simpleDateFormat.format(kanbanCard.calendar.time)
         textView_detail_description.text = kanbanCard.description
         toolbar_detail.setBackgroundColor(kanbanCard.color)
+        
 
     }
     private fun deleteCurrent(){
