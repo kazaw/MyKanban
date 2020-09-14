@@ -9,6 +9,9 @@
     <string name="radiobutton_in_progress">In Progress</string>
     <string name="radiobutton_done">Done</string>
     <string name="text_insert">Insert</string>
+    <string name="text_date">Date</string>
+    <string name="text_type">Type</string>
+    <string name="text_details">Details</string>
     <string-array name="array_colors">
         <item>Red</item>
         <item>Green</item>
