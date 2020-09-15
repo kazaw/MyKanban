@@ -8,9 +8,7 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.kacper.mykanban.data.KanbanCard
-import com.kacper.mykanban.utilities.DONE
-import com.kacper.mykanban.utilities.IN_PROGRESS
-import com.kacper.mykanban.utilities.TO_DO
+import com.kacper.mykanban.utilities.*
 import java.util.*
 
 
@@ -28,16 +26,17 @@ class AdderActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_type)
+        val buttonInsert: Button = findViewById(R.id.button_insert)
+        val editTextName : EditText = findViewById(R.id.editText_name)
+        val editTextDescription : EditText = findViewById(R.id.editText_description)
 
-        fun returnColor(): Int {
-            return when (spinner.selectedItem.toString()) {
-                "Red" -> Color.RED
-                "Green" -> Color.GREEN
-                "Blue" -> Color.BLUE
-                "Yellow" -> Color.YELLOW
-                else -> Color.WHITE
-            }
+        fun fillFields(){
+            val kanbanCard : KanbanCard = intent.getSerializableExtra("KanbanCardToEditExtra") as KanbanCard
+            editTextName.setText(kanbanCard.name)
+            editTextDescription.setText(kanbanCard.description)
+            buttonInsert.text = getString(R.string.text_edit)
         }
+
         fun returnType(): String {
             val selectedID = radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(selectedID)
@@ -50,9 +49,44 @@ class AdderActivity : AppCompatActivity() {
             }
 
         }
-        val buttonInsert: Button = findViewById(R.id.button_insert)
-        val editTextName : EditText = findViewById(R.id.editText_name)
-        val editTextDescription : EditText = findViewById(R.id.editText_description)
+
+        fun returnColor(): Int {
+            return when (spinner.selectedItem.toString()) {
+                "Red" -> Color.RED
+                "Green" -> Color.GREEN
+                "Blue" -> Color.BLUE
+                "Yellow" -> Color.YELLOW
+                else -> Color.WHITE
+            }
+        }
+
+        fun returnResult(){
+            val returnIntent = Intent()
+            val name = editTextName.text.toString()
+            val description = editTextDescription.text.toString()
+            var kanbanCard = KanbanCard(name, returnType() , description, returnColor(), Calendar.getInstance()) //TODO: Check if calendar change
+            returnIntent.putExtra("KanbanCardExtra", kanbanCard)
+            setResult(Activity.RESULT_OK,returnIntent)
+            finish()
+        }
+
+        fun returnEditedResult(){
+            val returnIntent = Intent()
+            val name = editTextName.text.toString()
+            val description = editTextDescription.text.toString()
+            val kanbanCard : KanbanCard = intent.getSerializableExtra("KanbanCardToEditExtra") as KanbanCard
+            kanbanCard.name = name
+            kanbanCard.type = returnType()
+            kanbanCard.description = description
+            kanbanCard.color = returnColor()
+            returnIntent.putExtra("EditedKanbanCardExtra",kanbanCard)
+            setResult(Activity.RESULT_OK,returnIntent)
+            finish()
+        }
+
+        if(intent.extras?.getInt("requestCode") == REQUEST_EDIT){
+            fillFields()
+        }
         buttonInsert.setOnClickListener {
             if(editTextName.text.isEmpty() || editTextDescription.text.isEmpty() ){
                 val toast = Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT)
@@ -60,13 +94,11 @@ class AdderActivity : AppCompatActivity() {
             }
             else{
                 try {
-                    val returnIntent = Intent()
-                    val name = editTextName.text.toString()
-                    val description = editTextDescription.text.toString()
-                    var kanbanCard = KanbanCard(name, returnType() , description, returnColor(), Calendar.getInstance()) //TODO: Check if calendar change
-                    returnIntent.putExtra("KanbanCardExtra", kanbanCard)
-                    setResult(Activity.RESULT_OK,returnIntent)
-                    finish()
+                    when(intent.extras?.getInt("requestCode")){
+                        REQUEST_INSERT -> returnResult()
+                        REQUEST_EDIT -> returnEditedResult()
+                        else -> throw Exception("AdderActivity Exception try")
+                    }
                 }
                 catch (e : Exception){
                     e.printStackTrace()

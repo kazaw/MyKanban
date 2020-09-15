@@ -1,16 +1,22 @@
 package com.kacper.mykanban.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.kacper.mykanban.AdderActivity
 import com.kacper.mykanban.R
 import com.kacper.mykanban.data.KanbanCard
+import com.kacper.mykanban.utilities.REQUEST_EDIT
+import com.kacper.mykanban.utilities.REQUEST_INSERT
 import com.kacper.mykanban.viewmodel.KanbanCardDetailViewModel
 import com.kacper.mykanban.viewmodel.KanbanCardDetailViewModelFactory
 import kotlinx.android.synthetic.main.fragment_kanbancard_detail.*
@@ -69,6 +75,7 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         super.onStart()
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
+    
     private fun displayDetails(){
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
         textView_detail_name.text = kanbanCard.name
@@ -79,13 +86,17 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         
 
     }
+
     private fun deleteCurrent(){
         viewModel.delete(kanbanCard)
         dismiss()
     }
 
     private fun startEditActivity(){
-
+        val intent = Intent(activity, AdderActivity::class.java)
+        intent.putExtra("KanbanCardToEditExtra",kanbanCard)
+        intent.putExtra("requestCode", REQUEST_EDIT)
+        startActivityForResult(intent, REQUEST_EDIT)
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -102,5 +113,12 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         }
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_EDIT && resultCode == AppCompatActivity.RESULT_OK) {
+            val kanbanCard : KanbanCard = data?.getSerializableExtra("EditedKanbanCardExtra") as KanbanCard
+            viewModel.update(kanbanCard)
+            Toast.makeText(context, "Edited", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

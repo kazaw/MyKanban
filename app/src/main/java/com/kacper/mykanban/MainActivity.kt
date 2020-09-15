@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, AdderActivity::class.java)
+            intent.putExtra("requestCode", REQUEST_INSERT)
             startActivityForResult(intent, REQUEST_INSERT)
         }
     }
