@@ -38,7 +38,7 @@ class MyKanbanCardRecyclerViewAdapter(
         holder.contentView.text = item.name
         holder.itemView.setBackgroundColor(item.color)
         holder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener()
+            cellClickListener.onCellClickListener(item)
         }
     }
     override fun getItemCount(): Int = values.size
