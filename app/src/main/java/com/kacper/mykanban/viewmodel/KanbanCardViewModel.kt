@@ -22,6 +22,10 @@ class KanbanCardViewModel(application: Application) : AndroidViewModel(applicati
         return  repository.getAll()
     }
 
+    fun getAllByType(kanbanType: String): LiveData<List<KanbanCard>> {
+        return  repository.getAllByType(kanbanType)
+    }
+
     fun insert(kanbanCard: KanbanCard) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(kanbanCard)
     }
