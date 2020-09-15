@@ -24,7 +24,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        //return KanbanCardFragment() //TODO: Switch, return fragment with kanbanCard with suitable type
         return when(position){
             0 -> KanbanCardFragment.newInstance(1, TO_DO)
             1 -> KanbanCardFragment.newInstance(1, IN_PROGRESS)
