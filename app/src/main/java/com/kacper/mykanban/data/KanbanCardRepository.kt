@@ -20,6 +20,4 @@ class KanbanCardRepository (private val kanbanCardDao: KanbanCardDao){
     suspend fun delete(kanbanCard: KanbanCard) = kanbanCardDao.delete(kanbanCard)
 
     suspend fun deleteAll() = kanbanCardDao.deleteAll()
-
-
 }

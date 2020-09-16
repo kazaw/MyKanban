@@ -1,5 +1,6 @@
 package com.kacper.mykanban.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -65,7 +66,7 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         toolbar_detail.inflateMenu(R.menu.menu_detail)
         toolbar_detail.setOnMenuItemClickListener(this)
         arguments?.getSerializable(KANBAN_KEY)?.let { kanbanCard = it as KanbanCard }
-        viewModel.getKanbanCard(kanbanCard).observe(viewLifecycleOwner, Observer {
+        viewModel.getKanbanCard(kanbanCard).observe(viewLifecycleOwner, {
             this.kanbanCard = it
             displayDetails()
         })
@@ -76,6 +77,7 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
     
+    @SuppressLint("SimpleDateFormat")
     private fun displayDetails(){
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
         textView_detail_name.text = kanbanCard.name
@@ -83,8 +85,6 @@ class KanbanCardDetailFragment : DialogFragment(), Toolbar.OnMenuItemClickListen
         textView_detail_date.text = simpleDateFormat.format(kanbanCard.calendar.time)
         textView_detail_description.text = kanbanCard.description
         toolbar_detail.setBackgroundColor(kanbanCard.color)
-        
-
     }
 
     private fun deleteCurrent(){

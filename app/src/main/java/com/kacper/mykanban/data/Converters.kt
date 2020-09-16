@@ -7,7 +7,6 @@ class Converters {
     @TypeConverter
     fun toCalendar(value: Long): Calendar {
         return Calendar.getInstance().apply { timeInMillis = value }
-
     }
     @TypeConverter
     fun fromCalendar(calendar: Calendar): Long {

@@ -20,6 +20,7 @@ private val TAB_TITLES = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
+@Suppress("DEPRECATION")
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
 
@@ -30,7 +31,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
             2 -> KanbanCardFragment.newInstance(1, DONE)
             else -> throw Exception("getItem Exception")
         }
-
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

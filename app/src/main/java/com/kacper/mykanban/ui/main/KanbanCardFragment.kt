@@ -50,8 +50,6 @@ class KanbanCardFragment : Fragment(), CellClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_kanbancard_list, container, false)
 
-        // Set the adapter
-
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
@@ -64,7 +62,6 @@ class KanbanCardFragment : Fragment(), CellClickListener {
                 kanbanCardViewModel.getAllByType(kanbanType).observe(this@KanbanCardFragment, { cards ->
                     kanbanAdapter.swapData(cards)
                 })
-
             }
         }
         return view

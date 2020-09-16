@@ -15,7 +15,7 @@ import java.util.*
 class AdderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_adder)
 
         val spinner: Spinner = findViewById(R.id.spinner_colors)
@@ -47,7 +47,6 @@ class AdderActivity : AppCompatActivity() {
                 getString(R.string.radiobutton_done) -> DONE
                 else -> TO_DO
             }
-
         }
 
         fun returnColor(): Int {
@@ -64,7 +63,7 @@ class AdderActivity : AppCompatActivity() {
             val returnIntent = Intent()
             val name = editTextName.text.toString()
             val description = editTextDescription.text.toString()
-            var kanbanCard = KanbanCard(name, returnType() , description, returnColor(), Calendar.getInstance()) //TODO: Check if calendar change
+            val kanbanCard = KanbanCard(name, returnType() , description, returnColor(), Calendar.getInstance())
             returnIntent.putExtra("KanbanCardExtra", kanbanCard)
             setResult(Activity.RESULT_OK,returnIntent)
             finish()
@@ -105,7 +104,5 @@ class AdderActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
-
 }
