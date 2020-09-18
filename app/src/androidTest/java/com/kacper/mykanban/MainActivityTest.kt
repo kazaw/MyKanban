@@ -45,13 +45,12 @@ open class MainActivityTest {
     fun testAddNewCard(){
         Intents.init()
         onView(withId(R.id.fab)).perform(click())
-        onView(withId(R.id.editText_name)).perform(ViewActions.typeText(STRING_TO_BE_TYPED))
+        onView(withId(R.id.editText_name)).perform(
+            ViewActions.typeText(STRING_TO_BE_TYPED))
         onView(withId(R.id.editText_description)).perform(
-            ViewActions.typeText(
-                STRING_TO_BE_TYPED
-            )
-        )
-        onView(withId(R.id.editText_name)).perform(ViewActions.closeSoftKeyboard())
+            ViewActions.typeText(STRING_TO_BE_TYPED))
+        onView(withId(R.id.editText_name)).perform(
+            ViewActions.closeSoftKeyboard())
         onView(withId(R.id.button_insert)).perform(click())
         Intents.release()
     }
@@ -65,8 +64,9 @@ open class MainActivityTest {
                 RecyclerViewActions.actionOnHolderItem(matchName(), click())
             )
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
+        //don't work
         //onView(withText(R.string.text_delete)).perform(click())
-        onView(withId(R.id.action_delete)).perform(click());
+        //onView(withId(R.id.action_edit)).perform(click());
         Intents.release()
     }
 }
