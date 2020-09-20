@@ -13,9 +13,9 @@ import com.kacper.mykanban.utilities.TO_DO
  */
 object DummyContent {
 
-    private val ITEMS: MutableList<KanbanCard> = ArrayList()
-    private val ITEM_MAP: MutableMap<String, KanbanCard> = HashMap()
-    private const val COUNT = 25
+    val ITEMS: MutableList<KanbanCard> = ArrayList()
+    val ITEM_MAP: MutableMap<String, KanbanCard> = HashMap()
+    const val COUNT = 25
 
     init {
         for (i in 1..COUNT) {
