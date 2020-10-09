@@ -51,10 +51,10 @@ class AdderActivity : AppCompatActivity() {
 
         fun returnColor(): Int {
             return when (spinner.selectedItem.toString()) {
-                "Red" -> Color.RED
-                "Green" -> Color.GREEN
-                "Blue" -> Color.BLUE
-                "Yellow" -> Color.YELLOW
+                "Red" -> Color.parseColor("#feedda")
+                "Green" -> Color.parseColor("#afffbc")
+                "Blue" -> Color.parseColor("#b2d9ea")
+                "Yellow" -> Color.parseColor("#fff5cc")
                 else -> Color.WHITE
             }
         }
