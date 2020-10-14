@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyKanban</string>
+    <string name="app_name">Simple Kanban</string>
     <string name="tab_text_1">To Do</string>
     <string name="tab_text_2">In Progress</string>
     <string name="tab_text_3">Done</string>
